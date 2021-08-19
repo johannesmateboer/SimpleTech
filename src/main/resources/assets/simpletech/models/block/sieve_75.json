@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "simpletech:wood",
-		"2": "minecraft:dirt",
+		"2": "minecraft:block/dirt",
 		"particle": "simpletech:wood"
 	},
 	"elements": [

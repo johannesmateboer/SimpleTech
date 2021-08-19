@@ -55,7 +55,7 @@ public class Sieve extends Block {
             if (stack.isEmpty() || !Objects.equals(stack.getItem(), Blocks.DIRT.asItem())) {
                 return ActionResult.PASS;
             }else{
-                // Take a dirtblock from the player
+                // Take a dirt-block from the player
                 stack.decrement(1);
                 player.setStackInHand(hand, stack);
             }
