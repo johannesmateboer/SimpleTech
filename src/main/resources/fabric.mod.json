@@ -3,27 +3,27 @@
   "id": "modid",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "SimpleTech",
+  "description": "When the earth has more to give, use it all.",
   "authors": [
-    "Me!"
+    "JohnPattox"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
 
-  "license": "CC0-1.0",
+  "license": "ARR",
   "icon": "assets/modid/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.simpletech.SimpleTech"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+
   ],
 
   "depends": {
