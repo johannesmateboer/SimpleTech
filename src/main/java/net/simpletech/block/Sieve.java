@@ -74,14 +74,14 @@ public class Sieve extends Block {
         return ActionResult.CONSUME;
     }
 
-    private static void doDropResult(World world, BlockPos pos) {
+    public void doDropResult(World world, BlockPos pos) {
         Item randomItem = Dropresults.getRandomItem();
         if (randomItem != null) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
         }
     }
 
-    private static boolean shouldDrop() {
+    public boolean shouldDrop() {
         Random rnd = new Random();
         return rnd.nextBoolean();
     }

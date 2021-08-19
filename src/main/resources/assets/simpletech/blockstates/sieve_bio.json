@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "progress=0": {
+      "model": "simpletech:block/sieve_bio_0"
+    },
+    "progress=1": {
+      "model": "simpletech:block/sieve_25"
+    },
+    "progress=2": {
+      "model": "simpletech:block/sieve_50"
+    },
+    "progress=3": {
+      "model": "simpletech:block/sieve_75"
+    }
+  }
+}

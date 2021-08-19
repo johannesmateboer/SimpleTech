@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PSP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "tag": "minecraft:flowers"
+    },
+    "S": {
+      "item": "simpletech:sieve"
+    }
+  },
+  "result": {
+    "item": "simpletech:sieve_bio",
+    "count": 1
+  }
+}

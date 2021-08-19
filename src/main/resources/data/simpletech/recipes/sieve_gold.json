@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PSP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "tag": "c:gold_ingots"
+    },
+    "S": {
+      "item": "simpletech:sieve"
+    }
+  },
+  "result": {
+    "item": "simpletech:sieve_gold",
+    "count": 1
+  }
+}

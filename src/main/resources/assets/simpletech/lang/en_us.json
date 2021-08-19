@@ -1,5 +1,9 @@
 {
   "itemGroup.simpletech.general": "SimpleTech",
   "block.simpletech.sieve" : "Sieve",
-  "block.simpletech.sieve.tooltip" : "Your basic sieve for dirt."
+  "block.simpletech.sieve.tooltip" : "Your basic sieve for dirt.",
+  "block.simpletech.sieve_bio" : "Bio-Sieve",
+  "block.simpletech.sieve_bio.tooltip" : "Get all the seeds from dirt.",
+  "block.simpletech.sieve_gold" : "Golden Sieve",
+  "block.simpletech.sieve_gold.tooltip" : "Get more precious items from your dirt!"
 }
