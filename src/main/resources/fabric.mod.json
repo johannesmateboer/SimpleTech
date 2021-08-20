@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "simpletech",
   "version": "${version}",
 
   "name": "SimpleTech",
@@ -9,12 +9,11 @@
     "JohnPattox"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/simpletech-for-fabric"
   },
 
   "license": "ARR",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/simpletech/sieve.png",
 
   "environment": "*",
   "entrypoints": {
