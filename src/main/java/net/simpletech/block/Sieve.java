@@ -80,7 +80,7 @@ public class Sieve extends Block {
     }
 
     public void doDropResult(World world, BlockPos pos) {
-        Item randomItem = Dropresults.getRandomItem();
+        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS);
         if (randomItem != null) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
         }

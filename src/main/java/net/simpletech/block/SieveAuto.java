@@ -4,6 +4,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -14,8 +15,11 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.simpletech.entity.SieveAutoEntity;
 import net.simpletech.init.SieveBlocks;
+import net.simpletech.util.Dropresults;
 import net.simpletech.util.VoxelUtil;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
 
 @SuppressWarnings("deprecation")
 public class SieveAuto extends BlockWithEntity {
@@ -31,7 +35,7 @@ public class SieveAuto extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new SieveAutoEntity(pos, state);
+        return new SieveAutoEntity(pos, state, Dropresults.ITEMS);
     }
 
     @Override

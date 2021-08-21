@@ -17,7 +17,7 @@ public class SieveGold extends Sieve {
 
     @Override
     public void doDropResult(World world, BlockPos pos) {
-        Item randomItem = Dropresults.getRandomGoldItem();
+        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS_GOLD);
         if (randomItem != null) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
         }

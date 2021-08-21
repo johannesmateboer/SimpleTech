@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,active=false": {
+      "model": "simpletech:block/sieve_auto_gold"
+    },
+    "facing=east,active=false": {
+      "model": "simpletech:block/sieve_auto_gold",
+      "y": 90
+    },
+    "facing=south,active=false": {
+      "model": "simpletech:block/sieve_auto_gold",
+      "y": 180
+    },
+    "facing=west,active=false": {
+      "model": "simpletech:block/sieve_auto_gold",
+      "y": 270
+    },
+    "facing=north,active=true": {
+      "model": "simpletech:block/sieve_auto_gold_active"
+    },
+    "facing=east,active=true": {
+      "model": "simpletech:block/sieve_auto_gold_active",
+      "y": 90
+    },
+    "facing=south,active=true": {
+      "model": "simpletech:block/sieve_auto_gold_active",
+      "y": 180
+    },
+    "facing=west,active=true": {
+      "model": "simpletech:block/sieve_auto_gold_active",
+      "y": 270
+    }
+  }
+}

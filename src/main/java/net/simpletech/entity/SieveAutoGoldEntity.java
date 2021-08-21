@@ -19,23 +19,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
-public class SieveAutoEntity extends BlockEntity {
+public class SieveAutoGoldEntity extends BlockEntity {
 
     private static int ticker = 0;
+    private final ArrayList<Item> dropResults = Dropresults.ITEMS_GOLD;
 
-    private final ArrayList<Item> dropResults;
-
-    public SieveAutoEntity(BlockPos pos, BlockState state, ArrayList<Item> dropResults) {
-        super(SieveBlocks.SIEVE_AUTO_ENTITY, pos, state);
-        this.dropResults = dropResults;
+    public SieveAutoGoldEntity(BlockPos pos, BlockState state) {
+        super(SieveBlocks.SIEVE_AUTO_GOLD_ENTITY, pos, state);
     }
 
-    public SieveAutoEntity(BlockPos pos, BlockState state) {
-        super(SieveBlocks.SIEVE_AUTO_ENTITY, pos, state);
-        this.dropResults = Dropresults.ITEMS;
-    }
-
-    public static void tick(World world, BlockPos pos, BlockState state, SieveAutoEntity blockEntity) {
+    public static void tick(World world, BlockPos pos, BlockState state, SieveAutoGoldEntity blockEntity) {
         if (!world.isClient() && ticker++ % 40 == 0) {
             boolean isActive = false;
 
@@ -59,14 +52,13 @@ public class SieveAutoEntity extends BlockEntity {
         }
     }
 
-    public boolean shouldDrop() {
+    private boolean shouldDrop() {
         Random rnd = new Random();
         return rnd.nextBoolean();
     }
 
-    public ArrayList<Item> getDroplist() {
+    private ArrayList<Item> getDroplist() {
         return this.dropResults;
     }
-
 
 }

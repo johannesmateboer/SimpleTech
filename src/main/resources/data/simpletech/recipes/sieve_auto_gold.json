@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PRP",
+    "PSP",
+    "PRP"
+  ],
+  "key": {
+    "P": {
+      "tag": "c:gold_ingots"
+    },
+    "S": {
+      "item": "simpletech:sieve_auto"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "simpletech:sieve_auto_gold",
+    "count": 1
+  }
+}
