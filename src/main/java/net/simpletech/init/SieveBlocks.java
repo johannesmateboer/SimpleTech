@@ -2,15 +2,19 @@ package net.simpletech.init;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.simpletech.SimpleTech;
 import net.simpletech.block.Sieve;
+import net.simpletech.block.SieveAuto;
 import net.simpletech.block.SieveBio;
 import net.simpletech.block.SieveGold;
+import net.simpletech.entity.SieveAutoEntity;
 
 public class SieveBlocks {
 
@@ -26,6 +30,11 @@ public class SieveBlocks {
     public static final BlockItem SIEVE_GOLD_ITEM;
     public static final Identifier SIEVE_GOLD_IDENTIFIER = new Identifier(SimpleTech.MOD_ID, "sieve_gold");
 
+    public static final Block SIEVE_AUTO;
+    public static final BlockItem SIEVE_AUTO_ITEM;
+    public static BlockEntityType<SieveAutoEntity> SIEVE_AUTO_ENTITY;
+    public static final Identifier SIEVE_AUTO_IDENTIFIER = new Identifier(SimpleTech.MOD_ID, "sieve_auto");
+
     static {
         SIEVE = Registry.register(Registry.BLOCK, SIEVE_IDENTIFIER, new Sieve(getBlockSettings(SIEVE_IDENTIFIER)));
         SIEVE_ITEM = Registry.register(Registry.ITEM, SIEVE_IDENTIFIER, new BlockItem(SIEVE, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));
@@ -35,6 +44,11 @@ public class SieveBlocks {
 
         SIEVE_GOLD = Registry.register(Registry.BLOCK, SIEVE_GOLD_IDENTIFIER, new SieveGold(getBlockSettings(SIEVE_GOLD_IDENTIFIER)));
         SIEVE_GOLD_ITEM = Registry.register(Registry.ITEM, SIEVE_GOLD_IDENTIFIER, new BlockItem(SIEVE_GOLD, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));
+
+        SIEVE_AUTO = Registry.register(Registry.BLOCK, SIEVE_AUTO_IDENTIFIER, new SieveAuto(getBlockSettings(SIEVE_AUTO_IDENTIFIER)));
+        SIEVE_AUTO_ITEM = Registry.register(Registry.ITEM, SIEVE_AUTO_IDENTIFIER, new BlockItem(SIEVE_AUTO, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));
+        SIEVE_AUTO_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, SIEVE_AUTO_IDENTIFIER, FabricBlockEntityTypeBuilder.create(SieveAutoEntity::new, SIEVE_AUTO).build(null));
+
     }
 
     private static FabricBlockSettings getBlockSettings(Identifier identifier) {
@@ -42,7 +56,7 @@ public class SieveBlocks {
     }
 
     public static void init() {
-
+        // I'm here to be called!
     }
 
 }
