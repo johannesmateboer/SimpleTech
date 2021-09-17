@@ -69,6 +69,7 @@ public class Dropresults {
     }
 
     private static void initNuggetlist() {
+        DROPTAGS.add("simpletech:dirt_remains");
         DROPTAGS.add("c:iron_nuggets");
         DROPTAGS.add("c:invar_nuggets");
         DROPTAGS.add("c:iridium_nuggets");
@@ -104,13 +105,14 @@ public class Dropresults {
         DROPTAGS_BIO.add("minecraft:crops");
         DROPTAGS_BIO.add("c:seeds");
         DROPTAGS_BIO.add("c:vegetables");
+        DROPTAGS_BIO.add("simpletech:bios");
     }
 
     private static void initGoldList() {
-        DROPTAGS_GOLD.add("c:redstone_dusts");
-        DROPTAGS_GOLD.add("c:lapis_ores");
-        DROPTAGS_GOLD.add("c:diamonds");
-        DROPTAGS_GOLD.add("c:tin_dusts");
-        DROPTAGS_GOLD.add("c:coal");
+        DROPTAGS_GOLD.add("simpletech:redstone_dusts");
+        DROPTAGS_GOLD.add("simpletech:lapis_ores");
+        DROPTAGS_GOLD.add("simpletech:diamonds");
+        DROPTAGS_GOLD.add("simpletech:tin_dusts");
+        DROPTAGS_GOLD.add("simpletech:coal");
     }
 }
