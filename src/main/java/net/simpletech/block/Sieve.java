@@ -4,6 +4,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -16,7 +17,6 @@ import net.minecraft.world.World;
 import net.simpletech.util.Dropresults;
 import net.simpletech.util.VoxelUtil;
 
-import java.util.Objects;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
@@ -52,35 +52,39 @@ public class Sieve extends Block {
         // Check if the player is holding dirt and the sieve is empty
         if (currentState == 0) {
             ItemStack stack = player.getStackInHand(hand);
-            if (stack.isEmpty() || !Objects.equals(stack.getItem(), Blocks.DIRT.asItem())) {
+            if (stack.isOf(Items.DIRT) ) {
+                if (!player.isCreative()) {
+                    // Take a dirt-block from Survival mode players
+                    stack.decrement(1);
+                    player.setStackInHand(hand, stack);
+                }
+            } else {
                 return ActionResult.PASS;
-            }else{
-                // Take a dirt-block from the player
-                stack.decrement(1);
-                player.setStackInHand(hand, stack);
             }
         }
+
+        // Update state, do drop if needed
         currentState = currentState + 1;
         if (currentState > 3) {
             // Do the drop of items
-            if (shouldDrop()) {
+            if (shouldDrop(world.getRandom())) {
                 doDropResult(world, pos);
             }
             targetProgress = 0;
-        }else{
+        } else {
             targetProgress = currentState;
         }
         world.setBlockState(pos, state.with(SieveProperties.PROGRESS, targetProgress));
+
         return ActionResult.CONSUME;
     }
 
-    public boolean shouldDrop() {
-        Random rnd = new Random();
-        return rnd.nextBoolean();
+    public boolean shouldDrop(Random random) {
+        return random.nextBoolean();
     }
 
     public void doDropResult(World world, BlockPos pos) {
-        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS);
+        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS, world.getRandom());
         if (randomItem != null) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
         }

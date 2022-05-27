@@ -1,9 +1,11 @@
 package net.simpletech.util;
 
 import net.minecraft.item.Item;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.regex.Pattern;
@@ -30,16 +32,15 @@ public class Dropresults {
      * Returns a random item from the loaded list
      * @return  Item    The provided item
      */
-    public static Item getRandomItem(ArrayList<Item> selectionGroup) {
+    public static Item getRandomItem(ArrayList<Item> selectionGroup, Random random) {
         loadGenericDropResults(ITEMS, DROPTAGS);
         loadGenericDropResults(ITEMS_BIO, DROPTAGS_BIO);
         loadGenericDropResults(ITEMS_GOLD, DROPTAGS_GOLD);
 
         if (selectionGroup.size() > 0) {
-            Random rand = new Random();
-            int randomIndex = rand.nextInt(selectionGroup.size());
+            int randomIndex = random.nextInt(selectionGroup.size());
             return selectionGroup.get(randomIndex);
-        }else{
+        } else {
             return null;
         }
     }
@@ -56,15 +57,14 @@ public class Dropresults {
         for (String dropTag : sourceList) {
             String[] dropTagParts = dropTag.split(Pattern.quote(":"));
             Identifier tagIdentifier = new Identifier(dropTagParts[0], dropTagParts[1]);
-            Tag<Item> itemTag = ItemTags.getTagGroup().getTagOrEmpty(tagIdentifier);
+            Iterable<RegistryEntry<Item>> itemIterable = Registry.ITEM.iterateEntries(TagKey.of(Registry.ITEM_KEY, tagIdentifier));
 
-            if (itemTag != null) {
-                for (Item checkItem : itemTag.values()) {
-                    if (!targetList.contains(checkItem)) {
-                        targetList.add(checkItem);
-                    }
+            itemIterable.iterator().forEachRemaining(itemRegistryEntry -> {
+                Item checkItem = itemRegistryEntry.value();
+                if (!targetList.contains(checkItem)) {
+                    targetList.add(checkItem);
                 }
-            }
+            });
         }
     }
 
