@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.simpletech.util.Dropresults;
 
-public class SieveBio extends Sieve{
+public class SieveBio extends Sieve {
 
     public SieveBio(Settings settings) {
         super(settings);
@@ -15,7 +15,7 @@ public class SieveBio extends Sieve{
 
     @Override
     public void doDropResult(World world, BlockPos pos) {
-        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS_BIO);
+        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS_BIO, world.getRandom());
         if (randomItem != null) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
         }
