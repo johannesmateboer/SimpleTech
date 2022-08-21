@@ -18,7 +18,7 @@ public class SieveUtil {
      * @param pos   The targetposition
      */
     public static void insertOrDrop(World world, BlockPos pos, ArrayList<Item> sourceList) {
-        Item randomItem = Dropresults.getRandomItem(sourceList);
+        Item randomItem = Dropresults.getRandomItem(sourceList, world.getRandom());
         if (randomItem != null) {
             if (world.getBlockEntity(pos) instanceof Inventory targetInventory) {
                 if (InventoryUtil.insertOrMerge(new ItemStack(randomItem, 1), targetInventory, Direction.WEST)) {

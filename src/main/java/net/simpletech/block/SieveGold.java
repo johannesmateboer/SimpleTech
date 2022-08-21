@@ -17,7 +17,7 @@ public class SieveGold extends Sieve {
 
     @Override
     public void doDropResult(World world, BlockPos pos) {
-        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS_GOLD);
+        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS_GOLD, world.getRandom());
         if (randomItem != null) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
         }
@@ -29,9 +29,8 @@ public class SieveGold extends Sieve {
      * @return bool
      */
     @Override
-    public boolean shouldDrop() {
-        Random rand = new Random();
-        int n = rand.nextInt(10);
+    public boolean shouldDrop(Random random) {
+        int n = random.nextInt(10);
         return n > 6;
     }
 }
