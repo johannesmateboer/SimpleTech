@@ -20,9 +20,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class SieveAutoGoldEntity extends BlockEntity {
-
     private static int ticker = 0;
-    private final ArrayList<Item> dropResults = Dropresults.ITEMS_GOLD;
 
     public SieveAutoGoldEntity(BlockPos pos, BlockState state) {
         super(SieveBlocks.SIEVE_AUTO_GOLD_ENTITY, pos, state);
@@ -42,7 +40,7 @@ public class SieveAutoGoldEntity extends BlockEntity {
                         targetStack.decrement(1);
                         BlockPos exitPos = pos.offset(direction.rotateCounterclockwise(Direction.Axis.Y));
                         if (blockEntity.shouldDrop()) {
-                            SieveUtil.insertOrDrop(world, exitPos, blockEntity.getDroplist());
+                            SieveUtil.insertOrDrop(world, exitPos, Dropresults.ITEMS_GOLD);
                         }
                         break;
                     }
@@ -55,10 +53,6 @@ public class SieveAutoGoldEntity extends BlockEntity {
     private boolean shouldDrop() {
         Random rnd = new Random();
         return rnd.nextBoolean();
-    }
-
-    private ArrayList<Item> getDroplist() {
-        return this.dropResults;
     }
 
 }

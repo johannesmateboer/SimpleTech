@@ -30,8 +30,5 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=16"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
