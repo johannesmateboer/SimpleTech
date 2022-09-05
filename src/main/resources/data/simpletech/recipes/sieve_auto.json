@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "PRP",
+    "PTP",
     "PSP",
-    "PRP"
+    "PTP"
   ],
   "key": {
     "P": {
-      "tag": "minecraft:planks"
+      "item": "minecraft:cobblestone"
     },
     "S": {
       "item": "simpletech:sieve"
     },
-    "R": {
+    "T": {
       "item": "minecraft:redstone"
     }
   },

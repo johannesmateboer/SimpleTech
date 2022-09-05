@@ -13,7 +13,7 @@
   },
 
   "license": "ARR",
-  "icon": "assets/simpletech/sieve.png",
+  "icon": "assets/simpletech/pack.png",
 
   "environment": "*",
   "entrypoints": {
