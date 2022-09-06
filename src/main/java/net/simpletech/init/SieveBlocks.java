@@ -59,7 +59,7 @@ public class SieveBlocks {
     }
 
     private static FabricBlockSettings getBlockSettings(Identifier identifier) {
-        return FabricBlockSettings.of(Material.STONE).hardness(1.5f).drops(identifier).nonOpaque();
+        return FabricBlockSettings.of(Material.STONE).hardness(1.2f).drops(identifier).nonOpaque();
     }
 
     public static void init() {
