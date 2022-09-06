@@ -35,7 +35,7 @@ public class SieveAuto extends BlockWithEntity {
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new SieveAutoEntity(pos, state, Dropresults.ITEMS);
+        return new SieveAutoEntity(pos, state);
     }
 
     @Override

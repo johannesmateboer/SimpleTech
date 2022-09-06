@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.simpletech.init.CustomTags;
 import net.simpletech.init.SieveBlocks;
 import net.simpletech.util.Dropresults;
 
@@ -20,7 +19,6 @@ public class SimpleTech implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		CustomTags.init();
 		Dropresults.init();
 		SieveBlocks.init();
 	}

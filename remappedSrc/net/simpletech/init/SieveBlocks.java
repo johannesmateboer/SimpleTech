@@ -52,14 +52,14 @@ public class SieveBlocks {
         SIEVE_AUTO_ITEM = Registry.register(Registry.ITEM, SIEVE_AUTO_IDENTIFIER, new BlockItem(SIEVE_AUTO, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));
         SIEVE_AUTO_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, SIEVE_AUTO_IDENTIFIER, FabricBlockEntityTypeBuilder.create(SieveAutoEntity::new, SIEVE_AUTO).build(null));
 
-        SIEVE_AUTO_GOLD = Registry.register(Registry.BLOCK, SIEVE_AUTO_GOLD_IDENTIFIER, new SieveAutoGold(getBlockSettings(SIEVE_AUTO_IDENTIFIER)));
+        SIEVE_AUTO_GOLD = Registry.register(Registry.BLOCK, SIEVE_AUTO_GOLD_IDENTIFIER, new SieveAutoGold(getBlockSettings(SIEVE_AUTO_GOLD_IDENTIFIER)));
         SIEVE_AUTO_GOLD_ITEM = Registry.register(Registry.ITEM, SIEVE_AUTO_GOLD_IDENTIFIER, new BlockItem(SIEVE_AUTO_GOLD, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));
         SIEVE_AUTO_GOLD_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, SIEVE_AUTO_GOLD_IDENTIFIER, FabricBlockEntityTypeBuilder.create(SieveAutoGoldEntity::new, SIEVE_AUTO_GOLD).build(null));
 
     }
 
     private static FabricBlockSettings getBlockSettings(Identifier identifier) {
-        return FabricBlockSettings.of(Material.STONE).hardness(1.5f).drops(identifier).nonOpaque();
+        return FabricBlockSettings.of(Material.STONE).hardness(1.2f).drops(identifier).nonOpaque();
     }
 
     public static void init() {
