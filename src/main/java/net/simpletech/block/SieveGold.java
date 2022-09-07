@@ -1,12 +1,9 @@
 package net.simpletech.block;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.simpletech.util.Dropresults;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class SieveGold extends Sieve {
@@ -16,11 +13,8 @@ public class SieveGold extends Sieve {
     }
 
     @Override
-    public void doDropResult(World world, BlockPos pos) {
-        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS_GOLD);
-        if (randomItem != null) {
-            ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
-        }
+    public ArrayList<Item> getDropresultsList() {
+        return Dropresults.ITEMS_GOLD;
     }
 
     /**

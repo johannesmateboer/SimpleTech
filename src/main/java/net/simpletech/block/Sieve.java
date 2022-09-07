@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.simpletech.util.Dropresults;
 import net.simpletech.util.VoxelUtil;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
@@ -39,6 +40,10 @@ public class Sieve extends Block {
 
     public Block getFilterBlock() {
         return Blocks.DIRT;
+    }
+
+    public ArrayList<Item> getDropresultsList(){
+        return Dropresults.ITEMS;
     }
 
     @Override
@@ -84,7 +89,7 @@ public class Sieve extends Block {
     }
 
     public void doDropResult(World world, BlockPos pos) {
-        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS);
+        Item randomItem = Dropresults.getRandomItem(getDropresultsList());
         if (randomItem != null) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
         }
