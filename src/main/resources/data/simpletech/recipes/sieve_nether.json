@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PSP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:netherrack"
+    },
+    "S": {
+      "item": "simpletech:sieve"
+    }
+  },
+  "result": {
+    "item": "simpletech:sieve_nether",
+    "count": 1
+  }
+}

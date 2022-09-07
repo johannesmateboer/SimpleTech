@@ -4,6 +4,8 @@
   "block.simpletech.sieve.tooltip" : "Your basic sieve for dirt.",
   "block.simpletech.sieve_bio" : "Bio-Sieve",
   "block.simpletech.sieve_bio.tooltip" : "Get all the seeds from dirt.",
+  "block.simpletech.sieve_nether" : "Nether Sieve",
+  "block.simpletech.sieve_nether.tooltip" : "Get all the seeds from netherrack.",
   "block.simpletech.sieve_gold" : "Golden Sieve",
   "block.simpletech.sieve_gold.tooltip" : "Get more precious items from your dirt!",
   "block.simpletech.sieve_auto_gold" : "Golden Auto-Sieve",

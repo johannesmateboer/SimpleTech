@@ -39,15 +39,20 @@ public class Dropresults {
     private static final ArrayList<TagKey> DROPTAGS_BIO = new ArrayList<>();
     private static final ArrayList<TagKey> DROPTAGS_GOLD = new ArrayList<>();
 
+    private static final ArrayList<TagKey> DROPTAGS_NETHER = new ArrayList<>();
+
     // Holds the retrieved items
     public static final ArrayList<Item> ITEMS = new ArrayList<>();
     public static final ArrayList<Item> ITEMS_BIO = new ArrayList<>();
     public static final ArrayList<Item> ITEMS_GOLD = new ArrayList<>();
 
+    public static final ArrayList<Item> ITEMS_NETHER = new ArrayList<>();
+
     public static void init() {
         initNuggetlist();
         initBioList();
         initGoldList();
+        initNetherList();
     }
 
     /**
@@ -58,6 +63,8 @@ public class Dropresults {
         loadGenericDropResults(ITEMS, DROPTAGS);
         loadGenericDropResults(ITEMS_BIO, DROPTAGS_BIO);
         loadGenericDropResults(ITEMS_GOLD, DROPTAGS_GOLD);
+        loadGenericDropResults(ITEMS_NETHER, DROPTAGS_NETHER);
+
 
         if (selectionGroup.size() > 0) {
             Random rand = new Random();
@@ -158,5 +165,11 @@ public class Dropresults {
         DROPTAGS_GOLD.add(register("simpletech","diamonds"));
         DROPTAGS_GOLD.add(register("simpletech","tin_dusts"));
         DROPTAGS_GOLD.add(register("simpletech","coal"));
+    }
+
+    private static void initNetherList() {
+        DROPTAGS_NETHER.add(register("c", "quartz"));
+        DROPTAGS_NETHER.add(register("c", "netherrack"));
+        DROPTAGS_NETHER.add(register("c", "gold_nuggets"));
     }
 }
