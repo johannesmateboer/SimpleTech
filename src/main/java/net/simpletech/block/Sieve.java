@@ -37,6 +37,10 @@ public class Sieve extends Block {
         return BlockRenderType.MODEL;
     }
 
+    public Block getFilterBlock() {
+        return Blocks.DIRT;
+    }
+
     @Override
     public VoxelShape getOutlineShape(BlockState blockState, BlockView blockView, BlockPos blockPos, ShapeContext entityContext) {
         // Set the bounding-box
@@ -52,7 +56,7 @@ public class Sieve extends Block {
         // Check if the player is holding dirt and the sieve is empty
         if (currentState == 0) {
             ItemStack stack = player.getStackInHand(hand);
-            if (stack.isEmpty() || !Objects.equals(stack.getItem(), Blocks.DIRT.asItem())) {
+            if (stack.isEmpty() || !Objects.equals(stack.getItem(), getFilterBlock().asItem())) {
                 return ActionResult.PASS;
             }else{
                 // Take a dirt-block from the player

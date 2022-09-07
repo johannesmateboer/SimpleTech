@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "progress=0": {
+      "model": "simpletech:block/sieve_0_nether"
+    },
+    "progress=1": {
+      "model": "simpletech:block/sieve_25_nether"
+    },
+    "progress=2": {
+      "model": "simpletech:block/sieve_50_nether"
+    },
+    "progress=3": {
+      "model": "simpletech:block/sieve_75_nether"
+    }
+  }
+}
