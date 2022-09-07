@@ -16,11 +16,13 @@ import net.minecraft.world.World;
 import net.simpletech.util.Dropresults;
 import net.simpletech.util.VoxelUtil;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public class Sieve extends Block {
+    private final Random rnd = new Random();
 
     public Sieve(Settings settings) {
         super(settings);
@@ -39,6 +41,10 @@ public class Sieve extends Block {
 
     public Block getFilterBlock() {
         return Blocks.DIRT;
+    }
+
+    public ArrayList<Item> getDropitems() {
+        return Dropresults.ITEMS;
     }
 
     @Override
@@ -79,12 +85,11 @@ public class Sieve extends Block {
     }
 
     public boolean shouldDrop() {
-        Random rnd = new Random();
         return rnd.nextBoolean();
     }
 
     public void doDropResult(World world, BlockPos pos) {
-        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS);
+        Item randomItem = Dropresults.getRandomItem(getDropitems());
         if (randomItem != null) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
         }

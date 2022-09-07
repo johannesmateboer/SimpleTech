@@ -1,11 +1,9 @@
 package net.simpletech.block;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.simpletech.util.Dropresults;
+
+import java.util.ArrayList;
 
 public class SieveBio extends Sieve{
 
@@ -14,10 +12,8 @@ public class SieveBio extends Sieve{
     }
 
     @Override
-    public void doDropResult(World world, BlockPos pos) {
-        Item randomItem = Dropresults.getRandomItem(Dropresults.ITEMS_BIO);
-        if (randomItem != null) {
-            ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
-        }
+    public ArrayList<Item> getDropitems() {
+        return Dropresults.ITEMS_BIO;
     }
+
 }

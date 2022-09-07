@@ -18,16 +18,12 @@ import java.util.Objects;
 import java.util.Random;
 
 public class SieveAutoGoldEntity extends BlockEntity {
-    private static int ticker = 0;
-
     private final Random rnd = new Random();
-
     public SieveAutoGoldEntity(BlockPos pos, BlockState state) {
         super(SieveBlocks.SIEVE_AUTO_GOLD_ENTITY, pos, state);
     }
-
     public static void tick(World world, BlockPos pos, BlockState state, SieveAutoGoldEntity blockEntity) {
-        if (!world.isClient() && ticker++ % 40 == 0) {
+        if (!world.isClient() && world.getTime() % 40L == 0L) {
             boolean isActive = false;
 
             Direction direction = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
