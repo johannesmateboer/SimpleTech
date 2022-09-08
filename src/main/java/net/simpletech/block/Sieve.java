@@ -38,10 +38,18 @@ public class Sieve extends Block {
         return BlockRenderType.MODEL;
     }
 
+    /**
+     * Which block triggers the sieve?
+     * @return
+     */
     public Block getFilterBlock() {
         return Blocks.DIRT;
     }
 
+    /**
+     * Returns the droplist for this specific sieve
+     * @return
+     */
     public ArrayList<Item> getDropresultsList(){
         return Dropresults.ITEMS;
     }
@@ -88,6 +96,11 @@ public class Sieve extends Block {
         return rnd.nextBoolean();
     }
 
+    /**
+     * Returns the dropresults as tags
+     * @param world
+     * @param pos
+     */
     public void doDropResult(World world, BlockPos pos) {
         Item randomItem = Dropresults.getRandomItem(getDropresultsList());
         if (randomItem != null) {

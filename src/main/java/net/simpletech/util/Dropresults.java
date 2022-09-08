@@ -111,44 +111,33 @@ public class Dropresults {
         DROPTAGS.add(register("c", "aluminum_nuggets"));
         DROPTAGS.add(register("c", "antimony_tiny_dusts"));
         DROPTAGS.add(register("c", "antimony_nuggets"));
-
         DROPTAGS.add(register("c", "battery_alloy_tiny_dusts"));
         DROPTAGS.add(register("c", "bauxite_tiny_dusts"));
         DROPTAGS.add(register("c", "bronze_tiny_dusts"));
-
         DROPTAGS.add(register("c", "coal_dusts"));
-
         DROPTAGS.add(register("c", "gold_dusts"));
-
         DROPTAGS.add(register("c", "iron_nuggets"));
         DROPTAGS.add(register("c", "iron_dusts"));
         DROPTAGS.add(register("c", "invar_nuggets"));
         DROPTAGS.add(register("c", "iridium_nuggets"));
-
         DROPTAGS.add(register("c", "lead_nuggets"));
-
         DROPTAGS.add(register("c", "manganese_nuggets"));
-
         DROPTAGS.add(register("c", "nickel_nuggets"));
-
         DROPTAGS.add(register("c", "platinum_nuggets"));
-
         DROPTAGS.add(register("c", "refined_iron_nuggets"));
-
         DROPTAGS.add(register("c", "silicon_nuggets"));
         DROPTAGS.add(register("c", "silver_nuggets"));
         DROPTAGS.add(register("c", "sodium_nuggets"));
         DROPTAGS.add(register("c", "steel_nuggets"));
         DROPTAGS.add(register("c", "stones"));
-
         DROPTAGS.add(register("c", "tin_nuggets"));
         DROPTAGS.add(register("c", "titanium_nuggets"));
         DROPTAGS.add(register("c", "tungsten_nuggets"));
         DROPTAGS.add(register("c", "tungstensteel_nuggets"));
         DROPTAGS.add(register("c", "tin_tiny_dusts"));
         DROPTAGS.add(register("c", "titanium_tiny_dusts"));
-
         DROPTAGS.add(register("c", "zinc_nuggets"));
+        DROPTAGS.add(register("simpletech", "gobber"));
     }
 
     private static void initBioList() {
@@ -171,5 +160,6 @@ public class Dropresults {
         DROPTAGS_NETHER.add(register("c", "quartz"));
         DROPTAGS_NETHER.add(register("c", "netherrack"));
         DROPTAGS_NETHER.add(register("c", "gold_nuggets"));
+        DROPTAGS_NETHER.add(register("simpletech", "gobber_end"));
     }
 }
