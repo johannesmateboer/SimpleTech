@@ -7,7 +7,8 @@
 		"5": "simpletech:auto_sieve_input",
 		"6": "simpletech:auto_sieve_output",
 		"7": "simpletech:sieve_auto_running",
-		"particle": "minecraft:block/cobblestone"
+		"particle": "minecraft:block/cobblestone",
+		"missing": "block/stone"
 	},
 	"elements": [
 		{

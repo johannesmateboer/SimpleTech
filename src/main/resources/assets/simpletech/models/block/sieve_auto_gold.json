@@ -6,6 +6,7 @@
 		"3": "simpletech:g_auto_input",
 		"4": "simpletech:gold",
 		"5": "simpletech:g_auto_output",
+		"missing": "block/stone",
 		"particle": "block/stone"
 	},
 	"elements": [
