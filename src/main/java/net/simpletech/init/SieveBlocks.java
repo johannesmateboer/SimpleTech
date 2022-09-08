@@ -24,6 +24,10 @@ public class SieveBlocks {
     public static final BlockItem SIEVE_NETHER_ITEM;
     public static final Identifier SIEVE_NETHER_IDENTIFIER = new Identifier(SimpleTech.MOD_ID, "sieve_nether");
 
+    public static final Block SIEVE_END;
+    public static final BlockItem SIEVE_END_ITEM;
+    public static final Identifier SIEVE_END_IDENTIFIER = new Identifier(SimpleTech.MOD_ID, "sieve_end");
+
     public static final Block SIEVE_BIO;
     public static final BlockItem SIEVE_BIO_ITEM;
     public static final Identifier SIEVE_BIO_IDENTIFIER = new Identifier(SimpleTech.MOD_ID, "sieve_bio");
@@ -51,6 +55,9 @@ public class SieveBlocks {
 
         SIEVE_NETHER = Registry.register(Registry.BLOCK, SIEVE_NETHER_IDENTIFIER, new SieveNether(getBlockSettings(SIEVE_NETHER_IDENTIFIER)));
         SIEVE_NETHER_ITEM = Registry.register(Registry.ITEM, SIEVE_NETHER_IDENTIFIER, new BlockItem(SIEVE_NETHER, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));
+
+        SIEVE_END = Registry.register(Registry.BLOCK, SIEVE_END_IDENTIFIER, new SieveEnd(getBlockSettings(SIEVE_END_IDENTIFIER)));
+        SIEVE_END_ITEM = Registry.register(Registry.ITEM, SIEVE_END_IDENTIFIER, new BlockItem(SIEVE_END, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));
 
         SIEVE_GOLD = Registry.register(Registry.BLOCK, SIEVE_GOLD_IDENTIFIER, new SieveGold(getBlockSettings(SIEVE_GOLD_IDENTIFIER)));
         SIEVE_GOLD_ITEM = Registry.register(Registry.ITEM, SIEVE_GOLD_IDENTIFIER, new BlockItem(SIEVE_GOLD, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));

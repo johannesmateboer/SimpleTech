@@ -1,28 +1,8 @@
 package net.simpletech.util;
 
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricLootTableProvider;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder;
-import net.fabricmc.fabric.impl.tag.convention.TagRegistration;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.data.server.LootTableProvider;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.entry.LeafEntry;
-import net.minecraft.loot.entry.TagEntry;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.resource.Resource;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.*;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.IndexedIterable;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
@@ -30,7 +10,6 @@ import net.minecraft.util.registry.RegistryKey;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
-import java.util.regex.Pattern;
 
 public class Dropresults {
 
@@ -38,21 +17,22 @@ public class Dropresults {
     private static final ArrayList<TagKey> DROPTAGS = new ArrayList<>();
     private static final ArrayList<TagKey> DROPTAGS_BIO = new ArrayList<>();
     private static final ArrayList<TagKey> DROPTAGS_GOLD = new ArrayList<>();
-
     private static final ArrayList<TagKey> DROPTAGS_NETHER = new ArrayList<>();
+    private static final ArrayList<TagKey> DROPTAGS_END = new ArrayList<>();
 
     // Holds the retrieved items
     public static final ArrayList<Item> ITEMS = new ArrayList<>();
     public static final ArrayList<Item> ITEMS_BIO = new ArrayList<>();
     public static final ArrayList<Item> ITEMS_GOLD = new ArrayList<>();
-
     public static final ArrayList<Item> ITEMS_NETHER = new ArrayList<>();
+    public static final ArrayList<Item> ITEMS_END = new ArrayList<>();
 
     public static void init() {
         initNuggetlist();
         initBioList();
         initGoldList();
         initNetherList();
+        initEndList();
     }
 
     /**
@@ -64,6 +44,7 @@ public class Dropresults {
         loadGenericDropResults(ITEMS_BIO, DROPTAGS_BIO);
         loadGenericDropResults(ITEMS_GOLD, DROPTAGS_GOLD);
         loadGenericDropResults(ITEMS_NETHER, DROPTAGS_NETHER);
+        loadGenericDropResults(ITEMS_END, DROPTAGS_END);
 
 
         if (selectionGroup.size() > 0) {
@@ -84,7 +65,7 @@ public class Dropresults {
         if (targetList.size() > 0) {
             return;
         }
-        Integer counter = 0;
+        int counter = 0;
 
         // Iterate over the droptags
         for (TagKey<Item> dropTagKey : sourceList) {
@@ -111,44 +92,34 @@ public class Dropresults {
         DROPTAGS.add(register("c", "aluminum_nuggets"));
         DROPTAGS.add(register("c", "antimony_tiny_dusts"));
         DROPTAGS.add(register("c", "antimony_nuggets"));
-
         DROPTAGS.add(register("c", "battery_alloy_tiny_dusts"));
         DROPTAGS.add(register("c", "bauxite_tiny_dusts"));
         DROPTAGS.add(register("c", "bronze_tiny_dusts"));
-
         DROPTAGS.add(register("c", "coal_dusts"));
-
         DROPTAGS.add(register("c", "gold_dusts"));
-
         DROPTAGS.add(register("c", "iron_nuggets"));
         DROPTAGS.add(register("c", "iron_dusts"));
         DROPTAGS.add(register("c", "invar_nuggets"));
         DROPTAGS.add(register("c", "iridium_nuggets"));
-
         DROPTAGS.add(register("c", "lead_nuggets"));
-
         DROPTAGS.add(register("c", "manganese_nuggets"));
-
         DROPTAGS.add(register("c", "nickel_nuggets"));
-
         DROPTAGS.add(register("c", "platinum_nuggets"));
-
         DROPTAGS.add(register("c", "refined_iron_nuggets"));
-
         DROPTAGS.add(register("c", "silicon_nuggets"));
         DROPTAGS.add(register("c", "silver_nuggets"));
         DROPTAGS.add(register("c", "sodium_nuggets"));
         DROPTAGS.add(register("c", "steel_nuggets"));
         DROPTAGS.add(register("c", "stones"));
-
         DROPTAGS.add(register("c", "tin_nuggets"));
         DROPTAGS.add(register("c", "titanium_nuggets"));
         DROPTAGS.add(register("c", "tungsten_nuggets"));
         DROPTAGS.add(register("c", "tungstensteel_nuggets"));
         DROPTAGS.add(register("c", "tin_tiny_dusts"));
         DROPTAGS.add(register("c", "titanium_tiny_dusts"));
-
         DROPTAGS.add(register("c", "zinc_nuggets"));
+
+        DROPTAGS.add(register("c", "common_loot"));
     }
 
     private static void initBioList() {
@@ -165,11 +136,20 @@ public class Dropresults {
         DROPTAGS_GOLD.add(register("simpletech","diamonds"));
         DROPTAGS_GOLD.add(register("simpletech","tin_dusts"));
         DROPTAGS_GOLD.add(register("simpletech","coal"));
+        DROPTAGS_GOLD.add(register("c","rare_loot"));
+
     }
 
     private static void initNetherList() {
         DROPTAGS_NETHER.add(register("c", "quartz"));
         DROPTAGS_NETHER.add(register("c", "netherrack"));
         DROPTAGS_NETHER.add(register("c", "gold_nuggets"));
+        DROPTAGS_NETHER.add(register("c", "uncommon_loot"));
     }
+
+    private static void initEndList() {
+        DROPTAGS_END.add(register("c", "very_rare_loot"));
+        DROPTAGS_END.add(register("c", "common_loot"));
+    }
+
 }

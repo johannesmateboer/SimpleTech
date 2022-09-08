@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PSP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:obsidian"
+    },
+    "S": {
+      "item": "simpletech:sieve_nether"
+    }
+  },
+  "result": {
+    "item": "simpletech:sieve_end",
+    "count": 1
+  }
+}

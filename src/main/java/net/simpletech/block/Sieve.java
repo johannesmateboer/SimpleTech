@@ -22,7 +22,6 @@ import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public class Sieve extends Block {
-    private final Random rnd = new Random();
 
     public Sieve(Settings settings) {
         super(settings);
@@ -39,11 +38,19 @@ public class Sieve extends Block {
         return BlockRenderType.MODEL;
     }
 
+    /**
+     * Which block triggers the sieve?
+     * @return
+     */
     public Block getFilterBlock() {
         return Blocks.DIRT;
     }
 
-    public ArrayList<Item> getDropitems() {
+    /**
+     * Returns the droplist for this specific sieve
+     * @return
+     */
+    public ArrayList<Item> getDropresultsList(){
         return Dropresults.ITEMS;
     }
 
@@ -85,11 +92,17 @@ public class Sieve extends Block {
     }
 
     public boolean shouldDrop() {
+        Random rnd = new Random();
         return rnd.nextBoolean();
     }
 
+    /**
+     * Returns the dropresults as tags
+     * @param world
+     * @param pos
+     */
     public void doDropResult(World world, BlockPos pos) {
-        Item randomItem = Dropresults.getRandomItem(getDropitems());
+        Item randomItem = Dropresults.getRandomItem(getDropresultsList());
         if (randomItem != null) {
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
         }

@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "minecraft:block/oak_log",
-		"2": "minecraft:block/dirt",
-		"3": "minecraft:block/oak_planks",
+		"0": "block/oak_log",
+		"2": "block/dirt",
+		"3": "block/oak_planks",
 		"particle": "simpletech:wood"
 	},
 	"elements": [
@@ -164,5 +164,7 @@
 			"origin": [0, 0, 0],
 			"color": 0,
 			"children": [4, 5, 6, 7, 8]
-		}, 9]
+		},
+		9
+	]
 }
