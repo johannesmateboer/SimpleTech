@@ -6,7 +6,8 @@
 		"4": "block/furnace_top",
 		"5": "simpletech:auto_sieve_input",
 		"6": "simpletech:auto_sieve_output",
-		"particle": "block/cobblestone"
+		"particle": "block/cobblestone",
+		"missing": "block/stone"
 	},
 	"elements": [
 		{

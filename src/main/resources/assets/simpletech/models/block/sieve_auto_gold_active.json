@@ -7,6 +7,7 @@
 		"4": "simpletech:gold",
 		"5": "simpletech:g_auto_output",
 		"6": "simpletech:sieve_gold_running",
+		"missing": "block/stone",
 		"particle": "minecraft:block/stone"
 	},
 	"elements": [
