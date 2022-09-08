@@ -19,8 +19,6 @@ import java.util.Random;
 
 public class SieveAutoEntity extends BlockEntity {
 
-    private static int ticker = 0;
-
     private final Random rnd = new Random();
 
     public SieveAutoEntity(BlockPos pos, BlockState state) {
@@ -28,12 +26,11 @@ public class SieveAutoEntity extends BlockEntity {
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, SieveAutoEntity blockEntity) {
-        if (!world.isClient() && ticker++ % 40 == 0) {
+        if (!world.isClient() && world.getTime() % 40 == 0) {
             boolean isActive = false;
-
             Direction direction = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
-            if (world.getBlockEntity(pos.offset(direction.rotateClockwise(Direction.Axis.Y))) instanceof Inventory) {
-                Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(direction.rotateClockwise(Direction.Axis.Y)));
+
+            if (world.getBlockEntity(pos.offset(direction.rotateClockwise(Direction.Axis.Y))) instanceof Inventory targetInventory) {
                 for (int i = 0; i < targetInventory.size(); i++) {
                     ItemStack targetStack = targetInventory.getStack(i);
                     if (Objects.equals(targetStack.getItem(), Blocks.DIRT.asItem())) {

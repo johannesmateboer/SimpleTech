@@ -16,6 +16,7 @@ import net.simpletech.init.SieveBlocks;
 import net.simpletech.util.VoxelUtil;
 import org.jetbrains.annotations.Nullable;
 
+
 public class SieveAutoGold extends BlockWithEntity {
 
     public SieveAutoGold(Settings settings) {
