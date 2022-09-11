@@ -33,7 +33,7 @@ public class SieveAutoNetherEntity extends BlockEntity {
             if (world.getBlockEntity(pos.offset(direction.rotateClockwise(Direction.Axis.Y))) instanceof Inventory targetInventory) {
                 for (int i = 0; i < targetInventory.size(); i++) {
                     ItemStack targetStack = targetInventory.getStack(i);
-                    if (Objects.equals(targetStack.getItem(), Blocks.DIRT.asItem())) {
+                    if (Objects.equals(targetStack.getItem(), Blocks.NETHERRACK.asItem())) {
                         isActive = true;
                         targetStack.decrement(1);
                         BlockPos exitPos = pos.offset(direction.rotateCounterclockwise(Direction.Axis.Y));
