@@ -13,7 +13,7 @@ public class SieveGold extends Sieve {
     }
 
     @Override
-    public ArrayList<Item> getDropitems() {
+    public ArrayList<Item> getDropresultsList() {
         return Dropresults.ITEMS_GOLD;
     }
 
