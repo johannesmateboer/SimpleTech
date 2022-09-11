@@ -13,5 +13,6 @@
   "block.simpletech.sieve_auto_gold" : "Golden Auto-Sieve",
   "block.simpletech.sieve_auto_gold.tooltip" : "Get more precious items from your dirt!",
   "block.simpletech.sieve_auto" : "Auto-Sieve",
-  "block.simpletech.sieve_auto.tooltip" : "Let the machine do the work for you."
+  "block.simpletech.sieve_auto.tooltip" : "Let the machine do the work for you.",
+  "block.simpletech.sieve_auto_nether" : "Auto-Sieve for netherrack"
 }

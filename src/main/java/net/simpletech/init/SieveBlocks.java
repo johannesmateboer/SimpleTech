@@ -13,6 +13,7 @@ import net.simpletech.SimpleTech;
 import net.simpletech.block.*;
 import net.simpletech.entity.SieveAutoEntity;
 import net.simpletech.entity.SieveAutoGoldEntity;
+import net.simpletech.entity.SieveAutoNetherEntity;
 
 public class SieveBlocks {
 
@@ -46,6 +47,12 @@ public class SieveBlocks {
     public static BlockEntityType<SieveAutoGoldEntity> SIEVE_AUTO_GOLD_ENTITY;
     public static final Identifier SIEVE_AUTO_GOLD_IDENTIFIER = new Identifier(SimpleTech.MOD_ID, "sieve_auto_gold");
 
+    public static final Block SIEVE_AUTO_NETHER;
+    public static final BlockItem SIEVE_AUTO_NETHER_ITEM;
+    public static BlockEntityType<SieveAutoNetherEntity> SIEVE_AUTO_NETHER_ENTITY;
+    public static final Identifier SIEVE_AUTO_NETHER_IDENTIFIER = new Identifier(SimpleTech.MOD_ID, "sieve_auto_nether");
+
+
     static {
         SIEVE = Registry.register(Registry.BLOCK, SIEVE_IDENTIFIER, new Sieve(getBlockSettings(SIEVE_IDENTIFIER)));
         SIEVE_ITEM = Registry.register(Registry.ITEM, SIEVE_IDENTIFIER, new BlockItem(SIEVE, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));
@@ -70,6 +77,9 @@ public class SieveBlocks {
         SIEVE_AUTO_GOLD_ITEM = Registry.register(Registry.ITEM, SIEVE_AUTO_GOLD_IDENTIFIER, new BlockItem(SIEVE_AUTO_GOLD, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));
         SIEVE_AUTO_GOLD_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, SIEVE_AUTO_GOLD_IDENTIFIER, FabricBlockEntityTypeBuilder.create(SieveAutoGoldEntity::new, SIEVE_AUTO_GOLD).build(null));
 
+        SIEVE_AUTO_NETHER = Registry.register(Registry.BLOCK, SIEVE_AUTO_NETHER_IDENTIFIER, new SieveAutoNether(getBlockSettings(SIEVE_AUTO_NETHER_IDENTIFIER)));
+        SIEVE_AUTO_NETHER_ITEM = Registry.register(Registry.ITEM, SIEVE_AUTO_NETHER_IDENTIFIER, new BlockItem(SIEVE_AUTO_NETHER, new FabricItemSettings().group(SimpleTech.ITEM_GROUP)));
+        SIEVE_AUTO_NETHER_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, SIEVE_AUTO_NETHER_IDENTIFIER, FabricBlockEntityTypeBuilder.create(SieveAutoNetherEntity::new, SIEVE_AUTO_NETHER).build(null));
     }
 
     private static FabricBlockSettings getBlockSettings(Identifier identifier) {

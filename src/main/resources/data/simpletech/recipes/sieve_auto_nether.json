@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "PSP",
+    "TTT"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "simpletech:sieve_nether"
+    },
+    "T": {
+      "item": "minecraft:smooth_stone"
+	}
+  },
+  "result": {
+    "item": "simpletech:sieve_auto_nether",
+    "count": 1
+  }
+}
