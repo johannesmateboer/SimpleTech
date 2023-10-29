@@ -1,24 +1,25 @@
 package net.simpletech.block;
 
 import net.minecraft.block.*;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.simpletech.util.Dropresults;
 import net.simpletech.util.VoxelUtil;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @SuppressWarnings("deprecation")
 public class Sieve extends Block {
@@ -50,7 +51,7 @@ public class Sieve extends Block {
      * Returns the droplist for this specific sieve
      * @return
      */
-    public ArrayList<Item> getDropresultsList(){
+    public Collection<Item> getDropresultsList() {
         return Dropresults.ITEMS;
     }
 
@@ -62,7 +63,6 @@ public class Sieve extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-
         int currentState = state.get(SieveProperties.PROGRESS);
         int targetProgress;
 
@@ -71,10 +71,12 @@ public class Sieve extends Block {
             ItemStack stack = player.getStackInHand(hand);
             if (stack.isEmpty() || !Objects.equals(stack.getItem(), getFilterBlock().asItem())) {
                 return ActionResult.PASS;
-            }else{
-                // Take a dirt-block from the player
-                stack.decrement(1);
-                player.setStackInHand(hand, stack);
+            } else {
+                // Take a dirt-block from the non-Creative player
+                if (!player.getAbilities().creativeMode) {
+                    stack.decrement(1);
+                    player.setStackInHand(hand, stack);
+                }
             }
         }
         currentState = currentState + 1;
@@ -84,16 +86,15 @@ public class Sieve extends Block {
                 doDropResult(world, pos);
             }
             targetProgress = 0;
-        }else{
+        } else {
             targetProgress = currentState;
         }
         world.setBlockState(pos, state.with(SieveProperties.PROGRESS, targetProgress));
-        return ActionResult.CONSUME;
+        return ActionResult.success(world.isClient);
     }
 
     public boolean shouldDrop() {
-        Random rnd = new Random();
-        return rnd.nextBoolean();
+        return ThreadLocalRandom.current().nextBoolean();
     }
 
     /**
@@ -104,7 +105,11 @@ public class Sieve extends Block {
     public void doDropResult(World world, BlockPos pos) {
         Item randomItem = Dropresults.getRandomItem(getDropresultsList());
         if (randomItem != null) {
-            ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(randomItem, 1));
+            // This is how vanilla spawns composter outputs; it avoids spawning beneath the sieve.
+            Vec3d spawnPos = Vec3d.add(pos, 0.5, 1.01, 0.5).addRandom(world.random, 0.6f);
+            ItemEntity itemEntity = new ItemEntity(world, spawnPos.getX(), spawnPos.getY(), spawnPos.getZ(), new ItemStack(randomItem));
+            itemEntity.setToDefaultPickupDelay();
+            world.spawnEntity(itemEntity);
         }
     }
 }

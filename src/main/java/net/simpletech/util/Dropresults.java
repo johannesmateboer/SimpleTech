@@ -1,31 +1,33 @@
 package net.simpletech.util;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.item.Item;
-import net.minecraft.tag.TagKey;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
+import net.simpletech.SimpleTech;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Dropresults {
-
     // Holds all tags which should be loaded
-    private static final ArrayList<TagKey> DROPTAGS = new ArrayList<>();
-    private static final ArrayList<TagKey> DROPTAGS_BIO = new ArrayList<>();
-    private static final ArrayList<TagKey> DROPTAGS_GOLD = new ArrayList<>();
-    private static final ArrayList<TagKey> DROPTAGS_NETHER = new ArrayList<>();
-    private static final ArrayList<TagKey> DROPTAGS_END = new ArrayList<>();
+    private static final ArrayList<TagKey<Item>> DROPTAGS = new ArrayList<>();
+    private static final ArrayList<TagKey<Item>> DROPTAGS_BIO = new ArrayList<>();
+    private static final ArrayList<TagKey<Item>> DROPTAGS_GOLD = new ArrayList<>();
+    private static final ArrayList<TagKey<Item>> DROPTAGS_NETHER = new ArrayList<>();
+    private static final ArrayList<TagKey<Item>> DROPTAGS_END = new ArrayList<>();
 
     // Holds the retrieved items
-    public static final ArrayList<Item> ITEMS = new ArrayList<>();
-    public static final ArrayList<Item> ITEMS_BIO = new ArrayList<>();
-    public static final ArrayList<Item> ITEMS_GOLD = new ArrayList<>();
-    public static final ArrayList<Item> ITEMS_NETHER = new ArrayList<>();
-    public static final ArrayList<Item> ITEMS_END = new ArrayList<>();
+    public static final HashSet<Item> ITEMS = new HashSet<>();
+    public static final HashSet<Item> ITEMS_BIO = new HashSet<>();
+    public static final HashSet<Item> ITEMS_GOLD = new HashSet<>();
+    public static final HashSet<Item> ITEMS_NETHER = new HashSet<>();
+    public static final HashSet<Item> ITEMS_END = new HashSet<>();
 
     public static void init() {
         initNuggetlist();
@@ -33,27 +35,26 @@ public class Dropresults {
         initGoldList();
         initNetherList();
         initEndList();
+
+        ServerLifecycleEvents.SERVER_STARTING.register(listener -> {
+            loadGenericDropResults(ITEMS, DROPTAGS, "Sieve");
+            loadGenericDropResults(ITEMS_BIO, DROPTAGS_BIO, "Bio Sieve");
+            loadGenericDropResults(ITEMS_GOLD, DROPTAGS_GOLD, "Gold Sieve");
+            loadGenericDropResults(ITEMS_NETHER, DROPTAGS_NETHER, "Nether Sieve");
+            loadGenericDropResults(ITEMS_END, DROPTAGS_END, "End Sieve");
+        });
     }
 
     /**
      * Returns a random item from the loaded list
      * @return  Item    The provided item
      */
-    public static Item getRandomItem(ArrayList<Item> selectionGroup) {
-        loadGenericDropResults(ITEMS, DROPTAGS);
-        loadGenericDropResults(ITEMS_BIO, DROPTAGS_BIO);
-        loadGenericDropResults(ITEMS_GOLD, DROPTAGS_GOLD);
-        loadGenericDropResults(ITEMS_NETHER, DROPTAGS_NETHER);
-        loadGenericDropResults(ITEMS_END, DROPTAGS_END);
-
-
-        if (selectionGroup.size() > 0) {
-            Random rand = new Random();
-            int randomIndex = rand.nextInt(selectionGroup.size());
-            return selectionGroup.get(randomIndex);
-        }else{
-            return null;
-        }
+    public static @Nullable Item getRandomItem(Collection<Item> selectionGroup) {
+            return selectionGroup
+                    .stream()
+                    .skip(ThreadLocalRandom.current().nextInt(selectionGroup.size()))
+                    .findAny()
+                    .orElse(null);
     }
 
     /**
@@ -61,37 +62,38 @@ public class Dropresults {
      * @param targetList    An empty item-list.
      * @param sourceList    A string-list with tags: c:tag
      */
-    private static void loadGenericDropResults(ArrayList<Item> targetList, ArrayList<TagKey> sourceList) {
-        if (targetList.size() > 0) {
-            return;
+    private static void loadGenericDropResults(Collection<Item> targetList, ArrayList<TagKey<Item>> sourceList, String name) {
+        int oldSize = targetList.size();
+        int newSize = 0;
+
+        if (oldSize > 0) {
+            targetList.clear();
         }
-        int counter = 0;
 
         // Iterate over the droptags
         for (TagKey<Item> dropTagKey : sourceList) {
-            for (RegistryEntry<Item> entry : Registry.ITEM.getOrCreateEntryList(dropTagKey)) {
-                Optional<RegistryKey<Item>> itm = entry.getKey();
-                RegistryKey<Item> i = itm.get();
-                Identifier itemId = i.getValue();
-                Item mainItem = Registry.ITEM.get(itemId);
-                targetList.add(mainItem);
-                counter++;
+            for (RegistryEntry<Item> entry : Registries.ITEM.getOrCreateEntryList(dropTagKey)) {
+                Optional<RegistryKey<Item>> itemKey = entry.getKey();
+                if (itemKey.isPresent()) {
+                    targetList.add(Registries.ITEM.get(itemKey.get().getValue()));
+                    ++newSize;
+                }
             }
         }
-        System.out.println("Added " + counter + " to the droplist");
+        SimpleTech.LOGGER.info("Updated {} droplist from size {} to size {}", name, oldSize, newSize);
     }
 
     private static TagKey<Item> register(String id, String path) {
-        return TagKey.of(Registry.ITEM_KEY, new Identifier(id, path));
+        return TagKey.of(RegistryKeys.ITEM, new Identifier(id, path));
     }
 
     private static void initNuggetlist() {
         DROPTAGS.add(register("simpletech","dirt_remains"));
 
-        DROPTAGS.add(register("c", "aluminum_tiny_dusts"));
         DROPTAGS.add(register("c", "aluminum_nuggets"));
-        DROPTAGS.add(register("c", "antimony_tiny_dusts"));
+        DROPTAGS.add(register("c", "aluminum_tiny_dusts"));
         DROPTAGS.add(register("c", "antimony_nuggets"));
+        DROPTAGS.add(register("c", "antimony_tiny_dusts"));
         DROPTAGS.add(register("c", "battery_alloy_tiny_dusts"));
         DROPTAGS.add(register("c", "bauxite_tiny_dusts"));
         DROPTAGS.add(register("c", "bronze_tiny_dusts"));
@@ -123,11 +125,17 @@ public class Dropresults {
     }
 
     private static void initBioList() {
-        DROPTAGS_BIO.add(register("minecraft","bee_growables"));
+        DROPTAGS_BIO.add(register("simpletech", "bios"));
+
         DROPTAGS_BIO.add(register("minecraft","crops"));
+        DROPTAGS_BIO.add(register("minecraft","fox_food"));
+        DROPTAGS_BIO.add(register("minecraft","saplings"));
+        DROPTAGS_BIO.add(register("minecraft","small_flowers"));
+        DROPTAGS_BIO.add(register("minecraft","tall_flowers"));
+        DROPTAGS_BIO.add(register("minecraft","villager_plantable_seeds"));
+
         DROPTAGS_BIO.add(register("c", "seeds"));
         DROPTAGS_BIO.add(register("c", "vegetables"));
-        DROPTAGS_BIO.add(register("simpletech", "bios"));
     }
 
     private static void initGoldList() {
@@ -136,20 +144,26 @@ public class Dropresults {
         DROPTAGS_GOLD.add(register("simpletech","diamonds"));
         DROPTAGS_GOLD.add(register("simpletech","tin_dusts"));
         DROPTAGS_GOLD.add(register("simpletech","coal"));
+
         DROPTAGS_GOLD.add(register("c","rare_loot"));
 
     }
 
     private static void initNetherList() {
-        DROPTAGS_NETHER.add(register("c", "quartz"));
-        DROPTAGS_NETHER.add(register("c", "netherrack"));
+        DROPTAGS_NETHER.add(register("simpletech","nether_remains"));
+
         DROPTAGS_NETHER.add(register("c", "gold_nuggets"));
+        DROPTAGS_NETHER.add(register("c", "netherrack"));
+        DROPTAGS_NETHER.add(register("c", "quartz"));
+        DROPTAGS_NETHER.add(register("c", "sulfurs"));
+
         DROPTAGS_NETHER.add(register("c", "uncommon_loot"));
     }
 
     private static void initEndList() {
+        DROPTAGS_END.add(register("simpletech","end_remains"));
+
         DROPTAGS_END.add(register("c", "very_rare_loot"));
         DROPTAGS_END.add(register("c", "common_loot"));
     }
-
 }

@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "block/furnace_side",
-		"3": "simpletech:metal",
+		"3": "simpletech:block/metal",
 		"4": "block/furnace_top",
-		"5": "simpletech:auto_sieve_input",
-		"6": "simpletech:auto_sieve_output",
+		"5": "simpletech:block/auto_sieve_input",
+		"6": "simpletech:block/auto_sieve_output",
 		"particle": "block/cobblestone",
 		"missing": "block/stone"
 	},

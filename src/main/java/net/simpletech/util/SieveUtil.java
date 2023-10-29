@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 public class SieveUtil {
 
@@ -17,7 +17,7 @@ public class SieveUtil {
      * @param world The World
      * @param pos   The targetposition
      */
-    public static void insertOrDrop(World world, BlockPos pos, ArrayList<Item> sourceList) {
+    public static void insertOrDrop(World world, BlockPos pos, Collection<Item> sourceList) {
         Item randomItem = Dropresults.getRandomItem(sourceList);
         if (randomItem != null) {
             if (world.getBlockEntity(pos) instanceof Inventory targetInventory) {

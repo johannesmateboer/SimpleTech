@@ -2,11 +2,11 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "minecraft:block/furnace_side",
-		"3": "simpletech:metal",
+		"3": "simpletech:block/metal",
 		"4": "minecraft:block/furnace_top",
-		"5": "simpletech:auto_sieve_input",
-		"6": "simpletech:auto_sieve_output",
-		"7": "simpletech:sieve_auto_running",
+		"5": "simpletech:block/auto_sieve_input",
+		"6": "simpletech:block/auto_sieve_output",
+		"7": "simpletech:block/sieve_auto_running",
 		"particle": "minecraft:block/cobblestone",
 		"missing": "block/stone"
 	},

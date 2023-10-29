@@ -28,7 +28,7 @@ public class InventoryUtil {
                     targetInventory.markDirty();
                     return true;
                 }
-            }else if (targetStack.isEmpty()) {
+            } else if (targetStack.isEmpty()) {
                 targetInventory.setStack(i, sourceStack);
                 targetInventory.markDirty();
                 return true;
@@ -37,4 +37,3 @@ public class InventoryUtil {
         return false;
     }
 }
-

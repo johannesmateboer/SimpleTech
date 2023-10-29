@@ -8,20 +8,23 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.simpletech.entity.SieveAutoGoldEntity;
 import net.simpletech.entity.SieveAutoNetherEntity;
 import net.simpletech.init.SieveBlocks;
 import net.simpletech.util.VoxelUtil;
 import org.jetbrains.annotations.Nullable;
 
-
 public class SieveAutoNether extends BlockWithEntity {
 
     public SieveAutoNether(Settings settings) {
         super(settings);
+        setDefaultState(this.stateManager.getDefaultState()
+                .with(Properties.HORIZONTAL_FACING, Direction.NORTH)
+                .with(SieveProperties.ACTIVE, false)
+        );
     }
 
     @Nullable
@@ -33,7 +36,7 @@ public class SieveAutoNether extends BlockWithEntity {
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         // When the player is sneaking, the sieve will be placed rotated.
-        return this.getDefaultState().with(Properties.HORIZONTAL_FACING, ctx.getPlayer().isSneaking() ? ctx.getPlayerFacing() : ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(Properties.HORIZONTAL_FACING, ctx.getPlayer().isSneaking() ? ctx.getHorizontalPlayerFacing() : ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
     @Override
@@ -58,5 +61,4 @@ public class SieveAutoNether extends BlockWithEntity {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(type, SieveBlocks.SIEVE_AUTO_NETHER_ENTITY, SieveAutoNetherEntity::tick);
     }
-
 }

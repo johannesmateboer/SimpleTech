@@ -1,7 +1,7 @@
 {
   "variants": {
     "progress=0": {
-      "model": "simpletech:block/sieve_gold_0"
+      "model": "simpletech:block/sieve_0_gold"
     },
     "progress=1": {
       "model": "simpletech:block/sieve_25"

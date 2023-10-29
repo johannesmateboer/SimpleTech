@@ -5,7 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.simpletech.util.Dropresults;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 public class SieveEnd extends Sieve {
 
@@ -14,7 +14,7 @@ public class SieveEnd extends Sieve {
     }
 
     @Override
-    public ArrayList<Item> getDropresultsList() {
+    public Collection<Item> getDropresultsList() {
         return Dropresults.ITEMS_END;
     }
 
