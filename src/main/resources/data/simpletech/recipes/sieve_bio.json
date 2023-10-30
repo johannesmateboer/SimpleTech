@@ -6,9 +6,12 @@
     "PPP"
   ],
   "key": {
-    "P": {
-      "tag": "simpletech:bios"
-    },
+    "P": [
+      { "tag": "minecraft:saplings" },
+      { "tag": "minecraft:small_flowers" },
+      { "tag": "minecraft:villager_plantable_seeds" },
+      { "tag": "simpletech:bios" }
+    ],
     "S": {
       "item": "simpletech:sieve"
     }
