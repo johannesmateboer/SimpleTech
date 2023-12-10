@@ -50,11 +50,16 @@ public class Dropresults {
      * @return  Item    The provided item
      */
     public static @Nullable Item getRandomItem(Collection<Item> selectionGroup) {
-            return selectionGroup
-                    .stream()
-                    .skip(ThreadLocalRandom.current().nextInt(selectionGroup.size()))
-                    .findAny()
-                    .orElse(null);
+        int size = selectionGroup.size();
+        if (size <= 0) {
+            return null;
+        }
+
+        return selectionGroup
+                .stream()
+                .skip(ThreadLocalRandom.current().nextInt(size))
+                .findAny()
+                .orElse(null);
     }
 
     /**
