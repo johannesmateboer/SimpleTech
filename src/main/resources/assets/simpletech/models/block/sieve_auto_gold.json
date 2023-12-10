@@ -3,9 +3,9 @@
 	"textures": {
 		"1": "block/blast_furnace_side",
 		"2": "block/blast_furnace_top",
-		"3": "simpletech:g_auto_input",
-		"4": "simpletech:gold",
-		"5": "simpletech:g_auto_output",
+		"3": "simpletech:block/g_auto_input",
+		"4": "simpletech:block/gold",
+		"5": "simpletech:block/g_auto_output",
 		"missing": "block/stone",
 		"particle": "block/stone"
 	},

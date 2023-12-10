@@ -15,11 +15,9 @@ import net.simpletech.util.Dropresults;
 import net.simpletech.util.SieveUtil;
 
 import java.util.Objects;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class SieveAutoGoldEntity extends BlockEntity {
-
-    private final Random rnd = new Random();
 
     public SieveAutoGoldEntity(BlockPos pos, BlockState state) {
         super(SieveBlocks.SIEVE_AUTO_GOLD_ENTITY, pos, state);
@@ -30,8 +28,7 @@ public class SieveAutoGoldEntity extends BlockEntity {
             boolean isActive = false;
 
             Direction direction = blockEntity.getCachedState().get(Properties.HORIZONTAL_FACING);
-            if (world.getBlockEntity(pos.offset(direction.rotateClockwise(Direction.Axis.Y))) instanceof Inventory) {
-                Inventory targetInventory = (Inventory) world.getBlockEntity(pos.offset(direction.rotateClockwise(Direction.Axis.Y)));
+            if (world.getBlockEntity(pos.offset(direction.rotateClockwise(Direction.Axis.Y))) instanceof Inventory targetInventory) {
                 for (int i = 0; i < targetInventory.size(); i++) {
                     ItemStack targetStack = targetInventory.getStack(i);
                     if (Objects.equals(targetStack.getItem(), Blocks.DIRT.asItem())) {
@@ -50,7 +47,6 @@ public class SieveAutoGoldEntity extends BlockEntity {
     }
 
     private boolean shouldDrop() {
-        return rnd.nextBoolean();
+        return ThreadLocalRandom.current().nextBoolean();
     }
-
 }

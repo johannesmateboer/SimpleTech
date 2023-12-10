@@ -3,8 +3,8 @@ package net.simpletech.block;
 import net.minecraft.item.Item;
 import net.simpletech.util.Dropresults;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.Collection;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class SieveGold extends Sieve {
 
@@ -13,7 +13,7 @@ public class SieveGold extends Sieve {
     }
 
     @Override
-    public ArrayList<Item> getDropresultsList() {
+    public Collection<Item> getDropresultsList() {
         return Dropresults.ITEMS_GOLD;
     }
 
@@ -24,8 +24,6 @@ public class SieveGold extends Sieve {
      */
     @Override
     public boolean shouldDrop() {
-        Random rand = new Random();
-        int n = rand.nextInt(10);
-        return n > 6;
+        return ThreadLocalRandom.current().nextInt(10) > 6;
     }
 }

@@ -3,10 +3,10 @@
 	"textures": {
 		"1": "minecraft:block/blast_furnace_side",
 		"2": "minecraft:block/blast_furnace_top",
-		"3": "simpletech:g_auto_input",
-		"4": "minecraft:netherrack",
-		"5": "simpletech:g_auto_output",
-		"6": "simpletech:sieve_nether_running",
+		"3": "simpletech:block/g_auto_input",
+		"4": "minecraft:block/netherrack",
+		"5": "simpletech:block/g_auto_output",
+		"6": "simpletech:block/sieve_nether_running",
 		"missing": "block/stone",
 		"particle": "minecraft:block/stone"
 	},

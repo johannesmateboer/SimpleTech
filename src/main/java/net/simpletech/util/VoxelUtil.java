@@ -38,5 +38,4 @@ public class VoxelUtil {
     public static VoxelShape createCuboid(int minX, int minY, int minZ, int maxX, int maxY, int maxZ) {
         return VoxelShapes.cuboid((minX/16f), (minY/16f), (minZ/16f), (maxX/16f), (maxY/16f), (maxZ/16f));
     }
-
 }

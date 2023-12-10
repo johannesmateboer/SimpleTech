@@ -15,11 +15,9 @@ import net.simpletech.util.Dropresults;
 import net.simpletech.util.SieveUtil;
 
 import java.util.Objects;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class SieveAutoEntity extends BlockEntity {
-
-    private final Random rnd = new Random();
 
     public SieveAutoEntity(BlockPos pos, BlockState state) {
         super(SieveBlocks.SIEVE_AUTO_ENTITY, pos, state);
@@ -49,6 +47,6 @@ public class SieveAutoEntity extends BlockEntity {
     }
 
     public boolean shouldDrop() {
-        return rnd.nextBoolean();
+        return ThreadLocalRandom.current().nextBoolean();
     }
 }
